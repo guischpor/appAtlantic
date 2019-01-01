@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
 
-    btnSignin:{
+    btnSignin: {
         width: 248,
         height: 41,
         backgroundColor: '#175B9F',
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
         marginTop: 12
     },
 
-    viewFooter:{
+    viewFooter: {
         flexDirection: 'row',
         marginTop: 30,
     },
