@@ -52,6 +52,7 @@ export default class Login extends React.Component {
                         <TextInput
                             placeholder= 'Username'
                             style={styles.inputTxt}
+                            value={this.state.login}
                         />
                     </View>
                     <View style={styles.viewInputPass}>
@@ -59,6 +60,7 @@ export default class Login extends React.Component {
                         <TextInput
                             placeholder= 'Password'
                             style={styles.inputTxt}
+                            value={this.state.pass}
                         />
                     </View>
                     <TouchableOpacity
