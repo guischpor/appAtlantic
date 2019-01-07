@@ -53,6 +53,8 @@ export default class Login extends React.Component {
                             placeholder= 'Username'
                             style={styles.inputTxt}
                             value={this.state.login}
+                            onChangeText={(login) => this.setState({login: login})}
+                            autoCapitalize='none'
                         />
                     </View>
                     <View style={styles.viewInputPass}>
@@ -61,6 +63,9 @@ export default class Login extends React.Component {
                             placeholder= 'Password'
                             style={styles.inputTxt}
                             value={this.state.pass}
+                            onChangeText={(pass) => this.setState({pass: pass})}
+                            secureTextEntry={true}
+                            autoCapitalize='none'
                         />
                     </View>
                     <TouchableOpacity
