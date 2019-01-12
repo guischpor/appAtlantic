@@ -8,13 +8,20 @@ import {
     ImageBackground,
     TextInput,
     TouchableOpacity,
-    TouchableHighlight
+    TouchableHighlight,
+    Dimensions
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const backgroundApp = require('../imgs/background_effect.jpg');
 const logo = require('../imgs/logo_high.png');
 const cadeadIcon = require('../imgs/icon_cad_high.png');
 const avatarIcon = require('../imgs/icon_avatar_high.png');
+const eyeIconOn = require('../imgs/icon_mostra_senha_white.png');
+const eyeIconOff = require('../imgs/icon_mostra_senha_white_off.png');
+
+
+const {width: WIDTH} = Dimensions.get('window');
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -22,7 +29,9 @@ export default class Login extends React.Component {
         this.state = {
             fontLoaded: false,
             login: '',
-            pass: ''
+            pass: '',
+            showPass: true,
+            press: false,
         }
     }
 
@@ -35,6 +44,21 @@ export default class Login extends React.Component {
             fontLoaded: true
         });
     }
+
+    showPass = () => {
+        if (this.state.press == false) {
+            this.setState({
+                showPass: false,
+                press: true
+            });
+        } else {
+            this.setState({
+                showPass: true,
+                press: false
+            });
+        }
+    }
+
     render() {
         if (this.state.fontLoaded != true) {
             return (
@@ -44,6 +68,7 @@ export default class Login extends React.Component {
 
         return (
             <ImageBackground source={backgroundApp} style={styles.viewContainer}>
+            <KeyboardAwareScrollView>
                 <View style={styles.containerLogin}>
                     <Image source={logo} style={styles.logo} />
                     <Text style={styles.txtTitle}>Sign in to get started</Text>
@@ -51,6 +76,7 @@ export default class Login extends React.Component {
                         <Image source={avatarIcon} style={styles.avatarIcon}/>
                         <TextInput
                             placeholder= 'Username'
+                            placeholderTextColor={'#A2A2A2'}
                             style={styles.inputTxt}
                             value={this.state.login}
                             onChangeText={(login) => this.setState({login: login})}
@@ -61,12 +87,23 @@ export default class Login extends React.Component {
                         <Image source={cadeadIcon} style={styles.cadeadoIcon}/>
                         <TextInput
                             placeholder= 'Password'
+                            placeholderTextColor={'#A2A2A2'}
                             style={styles.inputTxt}
                             value={this.state.pass}
                             onChangeText={(pass) => this.setState({pass: pass})}
-                            secureTextEntry={true}
+                            secureTextEntry={this.state.showPass}
                             autoCapitalize='none'
                         />
+                        <TouchableOpacity
+                            style={styles.eyeBtn}
+                            onPress={this.showPass.bind(this)}
+                        >
+                            { this.state.press == false ?
+                                <Image source={eyeIconOn} style={styles.eyeIconOn} />
+                            :
+                                <Image source={eyeIconOff} style={styles.eyeIconOff} />
+                            }
+                        </TouchableOpacity>
                     </View>
                     <TouchableOpacity
                         onPress={() =>{alert('Forget password ?')}}
@@ -92,6 +129,7 @@ export default class Login extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+                </KeyboardAwareScrollView>
             </ImageBackground>
         );
     }
@@ -102,6 +140,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1,
+        width: null,
+        height: null,
     },
 
     containerLogin: {
@@ -127,7 +167,8 @@ const styles = StyleSheet.create({
     },
 
     viewInputUser: {
-        width: 248,
+        //width: 248,
+        width: WIDTH -162,
         flexDirection: 'row',
         backgroundColor: 'rgba(18, 18, 18, 0.5)',
         borderColor: '#575757',
@@ -137,7 +178,8 @@ const styles = StyleSheet.create({
     },
 
     viewInputPass: {
-        width: 248,
+        //width: 248,
+        width: WIDTH -162,
         flexDirection: 'row',
         backgroundColor: 'rgba(18, 18, 18, 0.5)',
         borderColor: '#575757',
@@ -151,38 +193,59 @@ const styles = StyleSheet.create({
         fontFamily: 'Ubuntu_Light',
         padding: 5,
         textAlign: 'left',
-        color: '#A2A2A2'
+        color: '#A2A2A2',
+        left: 33
     },
 
     avatarIcon: {
         width: 10.19,
         height: 9.98,
         alignItems: 'stretch',
-        marginTop: 15,
-        marginLeft: 18,
-        marginRight: 6
+        top: 15,
+        left: 18,
+        right: 6,
+        position: 'absolute'
     },
 
     cadeadoIcon: {
         width: 7.55,
         height: 9.72,
         alignItems: 'stretch',
-        marginTop: 14,
-        marginLeft: 20,
-        marginRight: 8
+        top: 14,
+        left: 20,
+        right: 8,
+        position: 'absolute'
+    },
+
+    eyeIconOn: {
+        width: 18,
+        height: 10,
+    },
+
+    eyeIconOff: {
+        width: 18,
+        height: 10,
+    },
+
+    eyeBtn: {
+        top: 14,
+        right: 20,
+        alignItems:'flex-end',
+        position: 'absolute'
     },
 
     btnForget: {
         fontSize: 12,
         fontFamily: 'Ubuntu_Regular',
-        color: '#A2A2A2',
+        color: '#F7F7F7',
         marginLeft: 150,
         marginTop: 15,
         marginBottom: 15,
     },
 
     btnSignin: {
-        width: 248,
+        //width: 248,
+        width: WIDTH -162,
         height: 41,
         backgroundColor: '#175B9F',
         borderRadius: 4
