@@ -138,10 +138,12 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
     viewContainer: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         flex: 1,
         width: null,
         height: null,
+        flexDirection: 'column',
+        backgroundColor:'transparent',
     },
 
     containerLogin: {
