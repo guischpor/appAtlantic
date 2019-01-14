@@ -12,14 +12,12 @@ import {
     Dimensions
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const backgroundApp = require('../imgs/background_effect.jpg');
 const logo = require('../imgs/logo_high.png');
 const cadeadIcon = require('../imgs/icon_cad_high.png');
 const avatarIcon = require('../imgs/icon_avatar_high.png');
-const eyeIconOn = require('../imgs/icon_mostra_senha_white.png');
-const eyeIconOff = require('../imgs/icon_mostra_senha_white_off.png');
-
 
 const {width: WIDTH} = Dimensions.get('window');
 
@@ -98,10 +96,20 @@ export default class Login extends React.Component {
                             style={styles.eyeBtn}
                             onPress={this.showPass.bind(this)}
                         >
-                            { this.state.press == false ?
-                                <Image source={eyeIconOn} style={styles.eyeIconOn} />
+                            {this.state.press === false ?
+                                <MaterialCommunityIcons
+                                    name="eye-outline"
+                                    size={20}
+                                    color={'rgb(150,150,150)'}
+                                    style={{backgroundColor: 'transparent'}}
+                                />
                             :
-                                <Image source={eyeIconOff} style={styles.eyeIconOff} />
+                                <MaterialCommunityIcons
+                                    name="eye-off-outline"
+                                    size={20}
+                                    color={'#175B9F'}
+                                    style={{backgroundColor: 'transparent'}}
+                                />
                             }
                         </TouchableOpacity>
                     </View>
@@ -230,7 +238,7 @@ const styles = StyleSheet.create({
     },
 
     eyeBtn: {
-        top: 14,
+        top: 7,
         right: 20,
         alignItems:'flex-end',
         position: 'absolute'
