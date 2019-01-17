@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
 
     viewInputUser: {
         //width: 248,
-        width: WIDTH -162,
+        width: WIDTH -130,
         flexDirection: 'row',
         backgroundColor: 'rgba(18, 18, 18, 0.5)',
         borderColor: '#575757',
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
 
     viewInputPass: {
         //width: 248,
-        width: WIDTH -162,
+        width: WIDTH -130,
         flexDirection: 'row',
         backgroundColor: 'rgba(18, 18, 18, 0.5)',
         borderColor: '#575757',
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
 
     btnSignin: {
         //width: 248,
-        width: WIDTH -162,
+        width: WIDTH -130,
         height: 41,
         backgroundColor: '#175B9F',
         borderRadius: 4
